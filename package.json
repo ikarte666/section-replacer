@@ -11,14 +11,14 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:section-replacer.helloWorld"
+		"onCommand:section-replacer.sectionReplace"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "section-replacer.helloWorld",
-				"title": "Hello World"
+				"command": "section-replacer.sectionReplace",
+				"title": "replace in selected section"
 			}
 		]
 	},
