@@ -42,7 +42,6 @@ export function activate(context: vscode.ExtensionContext) {
                     const toGetLineNumber: number =
                         selections[0].end.line - selections[0].start.line + 1;
                     for (let i = 0; i < toGetLineNumber; i++) {
-                        log(`${selections[0].start.line + i}`);
                         lineNumbers.push(selections[0].start.line + i);
                     }
                     /////////////////////////////////////////////////////
