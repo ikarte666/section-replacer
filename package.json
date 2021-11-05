@@ -2,6 +2,7 @@
 	"name": "section-replacer",
 	"displayName": "section-replacer",
 	"description": "This extension performs to replace all things in selected section whatever you want.",
+	"publisher": "rondo",
 	"version": "0.0.1",
 	"repository": "https://github.com/ikarte666/section-replacer",
 	"engines": {
