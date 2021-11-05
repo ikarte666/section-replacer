@@ -37,6 +37,16 @@ export function activate(context: vscode.ExtensionContext) {
                         selections[0].end,
                     );
                     const lineAndChar: any = [];
+                    // 선택한 셀렉션 라인 넘버 저장
+                    const lineNumbers: number[] = [];
+                    const toGetLineNumber: number =
+                        selections[0].end.line - selections[0].start.line + 1;
+                    for (let i = 0; i < toGetLineNumber; i++) {
+                        log(`${selections[0].start.line + i}`);
+                        lineNumbers.push(selections[0].start.line + i);
+                    }
+                    /////////////////////////////////////////////////////
+                    // 라인별로 문자열 분해 후 패턴 매칭 인덱스를 라인 넘버와 함께 object로 저장
                     let lines = currentTextDocument
                         .getText(selectionRange)
                         .split("\n");
@@ -44,13 +54,17 @@ export function activate(context: vscode.ExtensionContext) {
                         for (let j = 0; j < lines[i].length; ) {
                             const char = lines[i].indexOf(changeString[0], j);
                             if (char > -1) {
-                                lineAndChar.push({ line: i, char });
+                                lineAndChar.push({
+                                    line: lineNumbers[i],
+                                    char,
+                                });
                                 j = char + 1;
                             } else {
                                 j++;
                             }
                         }
                     }
+                    ////////////////////////////////////////////////////
                     currentTextEditor.edit((editBuilder) => {
                         for (let i = 0; i < lineAndChar.length; i++) {
                             let sPos = new vscode.Position(
